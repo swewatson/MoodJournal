@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>HueNotes — Mood Journal</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <div>
+          <h1>HueNotes</h1>
+          <div class="muted">A simple, private mood journal</div>
+        </div>
+        <div class="muted" id="today"></div>
+      </header>
+
+      <section class="card grid" aria-labelledby="add-entry-title">
+        <div id="add-entry-title" class="muted" style="font-weight: 600">
+          Log today’s mood
+        </div>
+
+        <div class="row" role="radiogroup" aria-label="Choose your mood">
+          <button
+            class="chip"
+            role="radio"
+            aria-checked="false"
+            data-mood="Calm"
+          >
+            <span class="swatch calm"></span>Calm
+          </button>
+          <button
+            class="chip"
+            role="radio"
+            aria-checked="false"
+            data-mood="Happy"
+          >
+            <span class="swatch happy"></span>Happy
+          </button>
+          <button
+            class="chip"
+            role="radio"
+            aria-checked="false"
+            data-mood="Focused"
+          >
+            <span class="swatch focused"></span>Focused
+          </button>
+          <button
+            class="chip"
+            role="radio"
+            aria-checked="false"
+            data-mood="Anxious"
+          >
+            <span class="swatch anxious"></span>Anxious
+          </button>
+          <button
+            class="chip"
+            role="radio"
+            aria-checked="false"
+            data-mood="Tired"
+          >
+            <span class="swatch tired"></span>Tired
+          </button>
+        </div>
+
+        <label class="sr-only" for="note">Note</label>
+        <textarea
+          id="note"
+          placeholder="Add a few words about how you’re feeling…"
+        ></textarea>
+
+        <div class="actions">
+          <button class="btn primary" id="save">Save entry</button>
+          <button class="btn" id="export">Export JSON</button>
+          <button class="btn danger" id="clear">Clear all (local)</button>
+          <div class="muted">Entries are saved only to your browser.</div>
+        </div>
+      </section>
+
+      <section class="card grid">
+        <div class="filters">
+          <select id="filterMood" aria-label="Filter by mood">
+            <option value="">All moods</option>
+            <option>Calm</option>
+            <option>Happy</option>
+            <option>Focused</option>
+            <option>Anxious</option>
+            <option>Tired</option>
+          </select>
+          <input
+            type="search"
+            id="search"
+            placeholder="Search notes…"
+            aria-label="Search notes"
+          />
+          <select id="range" aria-label="Date range">
+            <option value="7">Last 7 days</option>
+            <option value="14">Last 14 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="365">Last 365 days</option>
+            <option value="all">All time</option>
+          </select>
+        </div>
+
+        <div class="chart">
+          <div>
+            <div class="muted">This week</div>
+            <div id="summary" style="font-weight: 600; margin-top: 6px">—</div>
+          </div>
+          <canvas
+            id="bar"
+            width="520"
+            height="140"
+            aria-label="Weekly mood counts"
+            role="img"
+          ></canvas>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="entries" id="entries"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
